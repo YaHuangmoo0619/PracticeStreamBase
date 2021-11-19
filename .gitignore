@@ -47,3 +47,6 @@ target/
 .project
 開發使用/~$開發準則.docx
 .metadata
+
+# stream base project file
+.nodes
