@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="10.6.1_0a0fdf7f8f3d4f25851d53e0e55c97ce2ece3d22">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.example.demoproject.NoticyPractice2"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables>
+            <dynamic-variable initial-expression="0" name="dataCount" setter-expression="input.dataCount" setter-stream="OutputStream"/>
+        </dynamic-variables>
+        <stream name="InputStream">
+            <schema>
+                <field name="custId" type="string"/>
+                <field name="birth" type="string"/>
+            </schema>
+        </stream>
+        <box name="Sequence" type="seqnum">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Sequence_1"/>
+            <param name="output-field" value="applyTimes"/>
+            <param name="sequence-id" value="dataCount"/>
+            <param name="update-expression" value="dataCount + 1"/>
+        </box>
+        <box name="Filter" type="filter">
+            <input port="1" stream="out:Sequence_1"/>
+            <output port="1" stream="out:Filter_1"/>
+            <output port="2" stream="out:Filter_2"/>
+            <output port="3" stream="out:Filter_3"/>
+            <output port="4" stream="out:Filter_4"/>
+            <output port="5" stream="out:Filter_5"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="dataCount=1"/>
+            <param name="expression.1" value="dataCount=2"/>
+            <param name="expression.2" value="dataCount=3"/>
+            <param name="expression.3" value="dataCount=4"/>
+            <param name="expression.4" value="dataCount=5"/>
+        </box>
+        <box name="Gather" type="gather">
+            <input port="1" stream="out:Filter_1"/>
+            <input port="2" stream="out:Filter_2"/>
+            <input port="3" stream="out:Filter_3"/>
+            <input port="4" stream="out:Filter_4"/>
+            <input port="5" stream="out:Filter_5"/>
+            <output port="1" stream="out:Gather_1"/>
+            <target-list>
+                <item name="input1" prefix="input1_" selection="none"/>
+                <item name="input2" prefix="input2_" selection="none"/>
+                <item name="input3" prefix="input3_" selection="none"/>
+                <item name="input4" prefix="input4_" selection="none"/>
+                <item name="input5" prefix="input5_" selection="none">
+                    <include field="custId"/>
+                </item>
+            </target-list>
+            <param name="key-field" value="custId"/>
+            <param name="output-last-time-field" value="false"/>
+            <param name="emit-on-completion" value="true"/>
+            <param name="replacement-type" value="keep_first"/>
+            <param name="wall-timeout" value="20"/>
+        </box>
+        <box name="Filter2" type="filter">
+            <input port="1" stream="out:Gather_1"/>
+            <output port="1" stream="out:Filter2_1"/>
+            <output port="2" stream="out:Filter2_2"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="isnull(input5_custId)"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="Map" type="map">
+            <input port="1" stream="out:Filter2_1"/>
+            <output port="1" stream="out:Map_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="dataCount">0</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Map2" type="map">
+            <input port="1" stream="out:Filter2_2"/>
+            <output port="1" stream="out:Map2_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="notify">"abnormal"</include>
+                    <include field="dataCount">0</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Union" type="union">
+            <input port="1" stream="out:Map_1"/>
+            <input port="2" stream="out:Map2_1"/>
+            <output port="1" stream="OutputStream"/>
+            <param name="strict" value="false"/>
+        </box>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

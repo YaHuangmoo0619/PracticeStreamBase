@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application version="10.6.1_0a0fdf7f8f3d4f25851d53e0e55c97ce2ece3d22">
+    <annotations>
+        <annotation name="hygienic"/>
+    </annotations>
+    <type-metadata>
+        <param name="type" value="interface"/>
+        <param name="fully-qualified-name" value="com.example.demoproject.newInterface"/>
+    </type-metadata>
+    <memory-model-settings/>
+    <named-schemas>
+        <schema name="newNameSchema">
+            <field name="s1" type="int"/>
+            <field name="s2" type="list">
+                <element-type type="string"/>
+            </field>
+            <field name="s3" type="tuple">
+                <schema>
+                    <field name="c1" type="string"/>
+                    <field name="c2" type="int"/>
+                </schema>
+            </field>
+        </schema>
+        <schema name="new2">
+            <field name="newN" type="tuple" value="newNameSchema"/>
+        </schema>
+    </named-schemas>
+    <dynamic-variables/>
+    <table-schemas>
+        <table-schema name="newTable">
+            <schema>
+                <field name="CUST_ID" type="string"/>
+                <field name="AGE" type="int"/>
+                <field name="GENDER" type="string"/>
+            </schema>
+            <primary-index type="btree">
+                <field name="CUST_ID"/>
+            </primary-index>
+        </table-schema>
+    </table-schemas>
+    <data name="InMemoryTable" shared="false" source="input" type="querytable">
+        <param name="replicated" value="false"/>
+        <param name="table-schema" value="newTable"/>
+        <param name="truncate" value="false"/>
+        <preload format="csv" mode="empty"/>
+    </data>
+    <stream name="Input" schema="new2"/>
+    <output-stream name="Output" schema="newNameSchema"/>
+</application>

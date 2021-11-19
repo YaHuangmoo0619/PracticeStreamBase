@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table:Table xmlns:Table="http:///com/tibco/cep/decision/table/model/DecisionTable.ecore">
+  <decisionTable>
+    <columns/>
+  </decisionTable>
+</Table:Table>

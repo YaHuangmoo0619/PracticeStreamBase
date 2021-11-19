@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="10.6.1_0a0fdf7f8f3d4f25851d53e0e55c97ce2ece3d22">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.example.demoproject.lab5"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="RegisterID" type="string"/>
+                <field name="Step" type="int"/>
+                <field name="Complete" type="bool"/>
+            </schema>
+        </stream>
+        <stream name="InputStreamCopy">
+            <schema>
+                <field name="RegisterID" type="string"/>
+                <field name="Step" type="int"/>
+                <field name="Complete" type="bool"/>
+            </schema>
+        </stream>
+        <stream name="InputStreamCopy2">
+            <schema>
+                <field name="RegisterID" type="string"/>
+                <field name="Step" type="int"/>
+                <field name="Complete" type="bool"/>
+            </schema>
+        </stream>
+        <stream name="InputStreamCopy3">
+            <schema>
+                <field name="RegisterID" type="string"/>
+                <field name="Step" type="int"/>
+                <field name="Complete" type="bool"/>
+            </schema>
+        </stream>
+        <box name="Filter" type="filter">
+            <input port="1" stream="InputStreamCopy3"/>
+            <output port="1" stream="out:Filter_1"/>
+            <output port="2" stream="out:Filter_2"/>
+            <output port="3" stream="out:Filter_3"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="Step=1"/>
+            <param name="expression.1" value="Step=2"/>
+            <param name="expression.2" value="Step=3"/>
+        </box>
+        <box name="Map" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Map_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <replace field="Step">1</replace>
+                    <replace field="Complete">true</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Map2" type="map">
+            <input port="1" stream="InputStreamCopy"/>
+            <output port="1" stream="out:Map2_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <replace field="Step">2</replace>
+                    <replace field="Complete">true</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Map3" type="map">
+            <input port="1" stream="InputStreamCopy2"/>
+            <output port="1" stream="out:Map3_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <replace field="Step">3</replace>
+                    <replace field="Complete">true</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Gather" type="gather">
+            <input port="1" stream="out:Map_1"/>
+            <input port="2" stream="out:Map2_1"/>
+            <input port="3" stream="out:Map3_1"/>
+            <output port="1" stream="out:Gather_1"/>
+            <target-list>
+                <item name="input1" prefix="input1_" selection="all"/>
+                <item name="input2" prefix="input2_" selection="all"/>
+                <item name="input3" prefix="input3_" selection="all"/>
+            </target-list>
+            <param name="key-field" value="RegisterID"/>
+            <param name="output-last-time-field" value="false"/>
+            <param name="emit-on-completion" value="true"/>
+            <param name="replacement-type" value="keep_first"/>
+            <param name="wall-timeout" value="30"/>
+        </box>
+        <box name="Gather2" type="gather">
+            <input port="1" stream="out:Filter_1"/>
+            <input port="2" stream="out:Filter_2"/>
+            <input port="3" stream="out:Filter_3"/>
+            <output port="1" stream="out:Gather2_1"/>
+            <target-list>
+                <item name="input1" selection="none">
+                    <include field="RegisterID"/>
+                </item>
+                <item name="input2" prefix="input2_" selection="none"/>
+                <item name="input3" prefix="input3_" selection="none"/>
+                <expressions>
+                    <include field="RegisterComplete">(input1.Complete and input2.Complete and input3.Complete)</include>
+                </expressions>
+            </target-list>
+            <param name="key-field" value="RegisterID"/>
+            <param name="output-last-time-field" value="false"/>
+            <param name="emit-on-completion" value="true"/>
+            <param name="replacement-type" value="strict_keep_first"/>
+            <param name="wall-timeout" value="30"/>
+            <param name="predicate" value="!input1.Complete or !input2.Complete or !input3.Complete"/>
+        </box>
+        <box name="Map4" type="map">
+            <input port="1" stream="out:Gather_1"/>
+            <output port="1" stream="OutputStream"/>
+            <target-list>
+                <item name="input" selection="none">
+                    <include field="input1_RegisterID"/>
+                </item>
+                <expressions>
+                    <include field="RegisterComplete">true</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Map5" type="map">
+            <input port="1" stream="out:Gather2_1"/>
+            <output port="1" stream="OutputStream2"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <replace field="RegisterComplete">notnull(RegisterComplete) and RegisterComplete</replace>
+                </item>
+            </target-list>
+        </box>
+        <output-stream name="OutputStream"/>
+        <output-stream name="OutputStream2"/>
+    </add>
+</modify>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="10.6.1_0a0fdf7f8f3d4f25851d53e0e55c97ce2ece3d22">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.example.demoproject.lab3"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <stream name="InputStream">
+            <schema>
+                <field name="CUST_ID" type="string"/>
+                <field name="Name" type="string"/>
+                <field name="Price" type="int"/>
+            </schema>
+        </stream>
+        <stream name="InputStreamCopy">
+            <schema>
+                <field name="CUST_ID" type="string"/>
+                <field name="Name" type="string"/>
+                <field name="Price" type="int"/>
+            </schema>
+        </stream>
+        <box name="Map" type="map">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="out:Map_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="Tx_TS">now()</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="MapCopy" type="map">
+            <input port="1" stream="InputStreamCopy"/>
+            <output port="1" stream="out:MapCopy_1"/>
+            <target-list>
+                <item name="input" selection="all"/>
+                <expressions>
+                    <include field="Tx_TS">now()</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="Split" type="split">
+            <input port="1" stream="out:Map_1"/>
+            <output port="1" stream="out:Split_1"/>
+            <output port="2" stream="out:Split_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="Split2" type="split">
+            <input port="1" stream="out:MapCopy_1"/>
+            <output port="1" stream="out:Split2_1"/>
+            <output port="2" stream="out:Split2_2"/>
+            <param name="output-count" value="2"/>
+        </box>
+        <box name="Filter" type="filter">
+            <input port="1" stream="out:Split_1"/>
+            <output port="1" stream="out:Filter_1"/>
+            <output port="2" stream="out:Filter_2"/>
+            <param name="autogen-nomatch-port" value="false"/>
+            <param name="expression.0" value="get_hour(Tx_TS)&gt;8 and get_hour(Tx_TS)&lt;18"/>
+            <param name="expression.1" value="true"/>
+        </box>
+        <box name="Map3" type="map">
+            <input port="1" stream="out:Split2_1"/>
+            <output port="1" stream="OutputStreamCopy"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <replace field="Price">if(8&lt;=get_hour(Tx_TS) and get_hour(Tx_TS)&lt;=18) then int(ceil(Price*0.8)) else Price</replace>
+                    <remove field="CUST_ID"/>
+                </item>
+            </target-list>
+        </box>
+        <box name="Map4" type="map">
+            <input port="1" stream="out:Split2_2"/>
+            <output port="1" stream="OutputStream4"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="CUST_ID"/>
+                    <remove field="Price"/>
+                </item>
+                <expressions>
+                    <include field="Point">Price*0.1</include>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="To_PointSystem" type="map">
+            <input port="1" stream="out:Split_2"/>
+            <output port="1" stream="OutputStream3"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="Name"/>
+                    <remove field="Price"/>
+                </item>
+                <expressions>
+                    <include field="Point">int(ceil(Price*0.1))</include>
+                </expressions>
+            </target-list>
+        </box>
+        <output-stream name="OutputStream3"/>
+        <output-stream name="OutputStream4"/>
+        <output-stream name="OutputStreamCopy"/>
+        <box name="To_TxSystem" type="map">
+            <input port="1" stream="out:Filter_1"/>
+            <output port="1" stream="OutputStream"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="CUST_ID"/>
+                </item>
+                <expressions>
+                    <replace field="Price">int(ceil(Price*0.8))</replace>
+                </expressions>
+            </target-list>
+        </box>
+        <box name="To_TxSystem2" type="map">
+            <input port="1" stream="out:Filter_2"/>
+            <output port="1" stream="OutputStream2"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="CUST_ID"/>
+                </item>
+            </target-list>
+        </box>
+        <output-stream name="OutputStream"/>
+        <output-stream name="OutputStream2"/>
+    </add>
+</modify>

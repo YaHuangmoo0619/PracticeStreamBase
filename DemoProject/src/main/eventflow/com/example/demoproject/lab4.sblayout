@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream2">
+        <param name="gui:x" value="-589"/>
+        <param name="gui:y" value="-247"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-150"/>
+        <param name="gui:y" value="-237"/>
+    </component>
+    <component name="Map2">
+        <param name="gui:x" value="-481"/>
+        <param name="gui:y" value="-247"/>
+    </component>
+    <component name="Map3">
+        <param name="gui:x" value="-321"/>
+        <param name="gui:y" value="-237"/>
+    </component>
+    <component name="Map4">
+        <param name="gui:x" value="-230"/>
+        <param name="gui:y" value="-237"/>
+    </component>
+    <component name="Map5">
+        <param name="gui:x" value="100"/>
+        <param name="gui:y" value="-135"/>
+        <param name="gui:bends:1" value="47,-187;67,-105"/>
+    </component>
+    <component name="Map6">
+        <param name="gui:x" value="-38"/>
+        <param name="gui:y" value="-339"/>
+        <param name="gui:bends:1" value="-83,-217;-72,-309"/>
+    </component>
+    <component name="Split2">
+        <param name="gui:x" value="-38"/>
+        <param name="gui:y" value="-227"/>
+    </component>
+    <component name="Union2">
+        <param name="gui:x" value="-401"/>
+        <param name="gui:y" value="-237"/>
+        <param name="gui:bends:2" value="203,-105;203,-41;-408,-41;-408,-197"/>
+    </component>
+    <component name="OutputStream2">
+        <param name="gui:x" value="100"/>
+        <param name="gui:y" value="-339"/>
+    </component>
+    <component name="OutputStream3">
+        <param name="gui:x" value="100"/>
+        <param name="gui:y" value="-237"/>
+    </component>
+</application-layout>

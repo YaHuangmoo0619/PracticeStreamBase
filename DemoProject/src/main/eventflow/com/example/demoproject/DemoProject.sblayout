@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-380"/>
+        <param name="gui:y" value="-97"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-65"/>
+        <param name="gui:y" value="7"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-38"/>
+        <param name="gui:y" value="-186"/>
+    </component>
+    <component name="Map2">
+        <param name="gui:x" value="116"/>
+        <param name="gui:y" value="-30"/>
+    </component>
+    <component name="Map3">
+        <param name="gui:x" value="116"/>
+        <param name="gui:y" value="80"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-224"/>
+        <param name="gui:y" value="-97"/>
+    </component>
+    <component name="OutputStream2">
+        <param name="gui:x" value="269"/>
+        <param name="gui:y" value="-34"/>
+    </component>
+    <component name="OutputStream3">
+        <param name="gui:x" value="269"/>
+        <param name="gui:y" value="80"/>
+    </component>
+    <component name="OutputStream4">
+        <param name="gui:x" value="4"/>
+        <param name="gui:y" value="185"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="111"/>
+        <param name="gui:y" value="-196"/>
+    </component>
+</application-layout>

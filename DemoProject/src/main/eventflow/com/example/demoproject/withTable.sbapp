@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="10.6.1">
+    <add generator="gui">
+        <type-metadata>
+            <param name="fully-qualified-name" value="com.example.demoproject.withTable"/>
+            <param name="type" value="module"/>
+        </type-metadata>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <implements module-reference="com.example.demoproject.newInterface"/>
+        <import from="com.example.demoproject.newInterface" postfix="" prefix=""/>
+        <stream name="Input" schema="new2"/>
+        <data name="InMemoryTable" type="querytable">
+            <param name="storage-method" value="memory"/>
+            <param name="shared-table" value="input"/>
+            <param name="table-schema" value="newTable"/>
+        </data>
+        <output-stream name="Output" schema="newNameSchema"/>
+    </add>
+</modify>

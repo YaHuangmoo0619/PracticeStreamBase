@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-1749"/>
+        <param name="gui:y" value="112"/>
+    </component>
+    <component name="QueryTable">
+        <param name="gui:x" value="-1340"/>
+        <param name="gui:y" value="5"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="QueryTable2">
+        <param name="gui:x" value="-1111"/>
+        <param name="gui:y" value="271"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-1254"/>
+        <param name="gui:y" value="-106"/>
+    </component>
+    <component name="Filter2">
+        <param name="gui:x" value="-1476"/>
+        <param name="gui:y" value="111"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-1111"/>
+        <param name="gui:y" value="-106"/>
+    </component>
+    <component name="Map2">
+        <param name="gui:x" value="-1646"/>
+        <param name="gui:y" value="112"/>
+    </component>
+    <component name="Metronome">
+        <param name="gui:x" value="-1438"/>
+        <param name="gui:y" value="-106"/>
+    </component>
+    <component name="Query">
+        <param name="gui:x" value="-1330"/>
+        <param name="gui:y" value="111"/>
+    </component>
+    <component name="Query2">
+        <param name="gui:x" value="-1335"/>
+        <param name="gui:y" value="-106"/>
+    </component>
+    <component name="Query3">
+        <param name="gui:x" value="-979"/>
+        <param name="gui:y" value="-106"/>
+    </component>
+    <component name="Query4">
+        <param name="gui:x" value="-1565"/>
+        <param name="gui:y" value="112"/>
+    </component>
+    <component name="OutputStream2">
+        <param name="gui:x" value="-1157"/>
+        <param name="gui:y" value="110"/>
+    </component>
+</application-layout>

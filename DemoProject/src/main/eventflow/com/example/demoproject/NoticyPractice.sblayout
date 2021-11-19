@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-1259"/>
+        <param name="gui:y" value="269"/>
+    </component>
+    <component name="QueryTable">
+        <param name="gui:x" value="-1023"/>
+        <param name="gui:y" value="145"/>
+        <param name="gui:width" value="80"/>
+        <param name="gui:height" value="56"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="-870"/>
+        <param name="gui:y" value="18"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-763"/>
+        <param name="gui:y" value="18"/>
+    </component>
+    <component name="Map2">
+        <param name="gui:x" value="-1156"/>
+        <param name="gui:y" value="269"/>
+    </component>
+    <component name="Metronome">
+        <param name="gui:x" value="-1116"/>
+        <param name="gui:y" value="18"/>
+    </component>
+    <component name="Query">
+        <param name="gui:x" value="-1013"/>
+        <param name="gui:y" value="269"/>
+    </component>
+    <component name="Query2">
+        <param name="gui:x" value="-1013"/>
+        <param name="gui:y" value="18"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="-662"/>
+        <param name="gui:y" value="18"/>
+    </component>
+    <component name="OutputStream2">
+        <param name="gui:x" value="-906"/>
+        <param name="gui:y" value="269"/>
+    </component>
+</application-layout>

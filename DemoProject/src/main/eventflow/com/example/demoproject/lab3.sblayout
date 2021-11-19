@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-302"/>
+        <param name="gui:y" value="-3"/>
+    </component>
+    <component name="InputStreamCopy">
+        <param name="gui:x" value="-286"/>
+        <param name="gui:y" value="-376"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="18"/>
+        <param name="gui:y" value="-59"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-177"/>
+        <param name="gui:y" value="-3"/>
+    </component>
+    <component name="Map3">
+        <param name="gui:x" value="34"/>
+        <param name="gui:y" value="-427"/>
+        <param name="gui:bends:1" value="10,-356;20,-397"/>
+    </component>
+    <component name="Map4">
+        <param name="gui:x" value="34"/>
+        <param name="gui:y" value="-325"/>
+        <param name="gui:bends:1" value="10,-336;20,-295"/>
+    </component>
+    <component name="MapCopy">
+        <param name="gui:x" value="-161"/>
+        <param name="gui:y" value="-376"/>
+    </component>
+    <component name="Split">
+        <param name="gui:x" value="-87"/>
+        <param name="gui:y" value="-3"/>
+    </component>
+    <component name="Split2">
+        <param name="gui:x" value="-71"/>
+        <param name="gui:y" value="-376"/>
+    </component>
+    <component name="To_PointSystem">
+        <param name="gui:x" value="18"/>
+        <param name="gui:y" value="53"/>
+    </component>
+    <component name="To_TxSystem">
+        <param name="gui:x" value="162"/>
+        <param name="gui:y" value="-151"/>
+    </component>
+    <component name="To_TxSystem2">
+        <param name="gui:x" value="162"/>
+        <param name="gui:y" value="-49"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="298"/>
+        <param name="gui:y" value="-151"/>
+    </component>
+    <component name="OutputStream2">
+        <param name="gui:x" value="298"/>
+        <param name="gui:y" value="-49"/>
+    </component>
+    <component name="OutputStream3">
+        <param name="gui:x" value="162"/>
+        <param name="gui:y" value="53"/>
+    </component>
+    <component name="OutputStreamCopy">
+        <param name="gui:x" value="178"/>
+        <param name="gui:y" value="-427"/>
+    </component>
+    <component name="OutputStream4">
+        <param name="gui:x" value="178"/>
+        <param name="gui:y" value="-325"/>
+    </component>
+</application-layout>

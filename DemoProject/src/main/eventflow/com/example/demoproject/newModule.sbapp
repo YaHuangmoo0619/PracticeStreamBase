@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modify version="10.6.1_0a0fdf7f8f3d4f25851d53e0e55c97ce2ece3d22">
+    <add>
+        <annotations>
+            <annotation name="hygienic"/>
+        </annotations>
+        <type-metadata>
+            <param name="type" value="module"/>
+            <param name="fully-qualified-name" value="com.example.demoproject.newModule"/>
+        </type-metadata>
+        <memory-model-settings/>
+        <dynamic-variables/>
+        <data name="QueryTable" shared="false" source="concrete" type="querytable">
+            <param name="storage-method" value="heap"/>
+            <param name="replicated" value="false"/>
+            <table-schema>
+                <schema>
+                    <field name="COLOR" type="string"/>
+                    <field name="PRICE" type="int"/>
+                    <field name="ID" type="string"/>
+                </schema>
+                <primary-index type="btree">
+                    <field name="ID"/>
+                </primary-index>
+            </table-schema>
+            <param name="truncate" value="false"/>
+            <preload format="json" mode="text">{"ID":"CID002","COLOR":"B","PRICE":15},&#13;
+{"ID":"CID003","COLOR":"B","PRICE":15},&#13;
+{"ID":"CID004","COLOR":"B","PRICE":20},&#13;
+{"ID":"CID005","COLOR":"R","PRICE":15},&#13;
+{"ID":"CID006","COLOR":"R","PRICE":15},&#13;
+{"ID":"CID007","COLOR":"R","PRICE":30},&#13;
+{"ID":"CID008","COLOR":"R","PRICE":30},&#13;
+{"ID":"CID009","COLOR":"Y","PRICE":40},&#13;
+{"ID":"CID010","COLOR":"Y","PRICE":50}</preload>
+        </data>
+        <stream name="InputStream">
+            <schema>
+                <field name="color" type="string"/>
+                <field name="price" type="int"/>
+                <field name="id" type="string"/>
+            </schema>
+        </stream>
+        <box name="Query" type="query">
+            <input port="1" stream="InputStream"/>
+            <output port="1" stream="OutputStream"/>
+            <dataref id="querytable" name="QueryTable"/>
+            <param name="operation" value="read"/>
+            <param name="where" value="all-rows"/>
+            <param name="write-type" value="insert"/>
+            <param name="if-write-fails" value="ignore"/>
+            <param name="no-match-mode" value="output-no-match-null"/>
+            <param name="order-by-direction" value="none"/>
+            <target-list>
+                <item name="input" selection="all">
+                    <remove field="color"/>
+                </item>
+                <item name="current" selection="none"/>
+                <expressions>
+                    <include field="product">count()</include>
+                </expressions>
+            </target-list>
+            <param name="group-by-name.0" value="color"/>
+            <param name="group-by.0" value="current.COLOR"/>
+            <param name="group-by-name.1" value="small"/>
+            <param name="group-by.1" value="current.PRICE&lt;20"/>
+            <target-list name="insert">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="update">
+                <item name="input" selection="all"/>
+            </target-list>
+            <target-list name="no-match">
+                <item name="input" selection="all"/>
+            </target-list>
+        </box>
+        <output-stream name="OutputStream"/>
+    </add>
+</modify>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><application-layout>
+    <component name="InputStream">
+        <param name="gui:x" value="-130"/>
+        <param name="gui:y" value="-182"/>
+    </component>
+    <component name="Map">
+        <param name="gui:x" value="-27"/>
+        <param name="gui:y" value="-182"/>
+    </component>
+    <component name="Filter">
+        <param name="gui:x" value="78"/>
+        <param name="gui:y" value="-184"/>
+        <param name="gui:height" value="65"/>
+    </component>
+    <component name="Map2">
+        <param name="gui:x" value="191"/>
+        <param name="gui:y" value="-279"/>
+    </component>
+    <component name="Map3">
+        <param name="gui:x" value="191"/>
+        <param name="gui:y" value="-178"/>
+    </component>
+    <component name="Map4">
+        <param name="gui:x" value="191"/>
+        <param name="gui:y" value="-76"/>
+        <param name="gui:bends:1" value="148,-139;169,-46"/>
+    </component>
+    <component name="OutputStream">
+        <param name="gui:x" value="319"/>
+        <param name="gui:y" value="-178"/>
+    </component>
+    <component name="OutputStreamCopy">
+        <param name="gui:x" value="319"/>
+        <param name="gui:y" value="-280"/>
+    </component>
+    <component name="OutputStreamCopy2">
+        <param name="gui:x" value="319"/>
+        <param name="gui:y" value="-76"/>
+    </component>
+</application-layout>
